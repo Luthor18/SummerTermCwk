@@ -55,9 +55,12 @@ int main(int argc, char *argv[]) {
 	
 	
  while(1) {
+	 
 	getmaxyx(stdscr, max_y, max_x);
 	clear();
 	userInput = getch();
+	
+	
 	for (i=0;i<8;i++){
 		newX[i] = centipedex[i]+direction[i];
 		if (newX[i]>=max_x || newX[i]<0){
@@ -65,16 +68,12 @@ int main(int argc, char *argv[]) {
 			direction[i]*= -1;
 		}
 		else{
-			for (c=0;c<max_y;c++){
-				for (t=0;t<max_y;t++){
-					if (mushrooms[centipedey[i]][newX[i]]!=0){
-						centipedey[i]+=1;
-						direction[i]*= -1;
-					}
-					else{
-						centipedex[i]+=direction[i];
-					}
-				}
+			if (mushrooms[centipedey[i]][newX[i]]!=0){
+				centipedey[i]+=1;
+				direction[i]*= -1;
+			}
+			else{
+				centipedex[i]+=direction[i];
 			}
 			
 		}
